@@ -1,0 +1,53 @@
+# ---------------------------------------------------------------------------
+# Financial services track
+#
+# This is the ONLY file you need to edit to point the project at your own data.
+# Everything else in this project reads from the vars below.
+#
+# This is the flagship track. It is the same length as the other two, but the
+# data is richer: a five-table credit-risk star, real PII to govern, and
+# enforced contracts doing actual work.
+# ---------------------------------------------------------------------------
+
+name: 'hol_financial_services'
+version: '1.0.0'
+profile: 'snowflake_hol'
+
+# Fusion-conformant: no config-version key, and a minimum version floor.
+require-dbt-version: [">=1.9.0"]
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+# dbt seed's default Snowflake load is unquoted (Snowflake-uppercased) names,
+# which is what quoting: false already matches. No per-attendee variation to
+# account for here, since every attendee seeds the same way.
+quoting:
+  database: false
+  schema: false
+  identifier: false
+
+vars:
+  # ---- TRACK IDENTITY (one obvious place per project) ---------------------
+  track_key: 'financial_services'
+  track_name: 'Financial services'
+  track_description: >
+    Credit risk assessment across a portfolio of customers and lending
+    institutions: risk scores, fraud probability, exposure, approval decisions
+    and the governance work needed to expose any of it to an AI agent.
+
+models:
+  hol_financial_services:
+    +materialized: view
+    staging:
+      +tags: ['staging']
+    intermediate:
+      +tags: ['intermediate']
+    marts:
+      +materialized: table
+      +tags: ['marts']
