@@ -4,9 +4,31 @@ Credit risk across a portfolio of customers and lending institutions. This is
 the flagship track: the same 90 minutes as the other two, but the richest data
 and the only one where governance does real work.
 
-The full step-by-step walkthrough is
-[docs/attendee-guide-financial-services.md](../../docs/attendee-guide-financial-services.md).
-This file is the 30-second orientation.
+This file is the 30-second orientation. The full step-by-step attendee
+walkthrough is distributed separately by the workshop facilitators.
+
+## All data here is synthetic
+
+This repository contains columns named `social_security_number`, `ssn`,
+`drivers_license` and similar, plus customer names and email addresses. **None
+of it is real.** Identity values are sequential placeholders, names are
+`Persona Customer N`, and email addresses use the reserved `example.com`
+domain.
+
+The PII-shaped columns are the point of the exercise — see
+[the governance beat](#the-governance-beat) below and
+[SECURITY.md](SECURITY.md). Automated scanners will flag these files, and that
+is expected.
+
+## Support and maintenance
+
+This project is provided as-is, without warranties or SLAs. It is workshop
+material, maintained on a best-effort basis by the dbt Labs sales engineering
+team.
+
+Bug reports and questions are welcome as GitHub issues, but there is no
+committed response time. For security reports, see [SECURITY.md](SECURITY.md).
+Nothing here implies contractual support from dbt Labs.
 
 ## Who should pick this track
 
@@ -26,7 +48,10 @@ scoring this.
 
 ## Quickstart
 
-1. Open this folder (`projects/financial_services`) in dbt Studio.
+You will need your own Snowflake account and a dbt project pointed at this
+repository. No credentials are included here.
+
+1. Clone this repository, or connect it to a dbt project in dbt Studio.
 2. `dbt deps`
 3. `dbt seed`, which loads all eight raw tables — the feeds a real deployment
    would land continuously via Openflow instead.
@@ -36,7 +61,8 @@ scoring this.
    recommendation marts.
 
 Stuck? There's no schema to fall back to any more — the seed is the same for
-everyone. Re-fork the repo if you think you've broken something structural.
+everyone. Re-clone the repository if you think you've broken something
+structural.
 
 ## The star
 
